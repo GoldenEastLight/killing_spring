@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<h2>API 호출 테스트</h2>
+	<button>호출</button>
+	<div id="result"></div>
+	<script>
+		/*
+			jsonp(json padding) 활용하기
+			
+			- script 태그를 이용해 자바스크립트 파일을 요청하는 것은
+			  SOP(Same Origin Policy)의 영향을 받지 않는 것을 이용하자..
+		*/
+		function mycb(msg){
+			$('#result').html(msg);
+		}
+		$("button").click(function() {
+// 			$.getScript("http://localhost:8080/apiserver/cors/test03?callback=mycb");
+
+			// jsonp 방식 적용
+			/*
+			// http://localhost:8080/apiserver/cors/test03?callback=mycb&_=1604034018273
+			$.ajax({
+				url: "http://localhost:8080/apiserver/cors/test03",
+				dataType: "jsonp",
+				jsonpCallback: "mycb"
+			});
+			*/
+			
+			// http://localhost:8080/apiserver/cors/test03?callback=jQuery35109433593756134853_1604034150404&_=1604034150405
+			$.ajax({
+				url: "http://localhost:8080/apiserver/cors/test03",
+				dataType: "jsonp",
+				jsonp: "callback",
+				success: function(msg) {
+					$("#result").html(msg);
+				}
+			});
+		});
+	</script>
+</body>
+</html>
