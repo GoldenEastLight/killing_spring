@@ -12,7 +12,7 @@
 	<artifactId>fileupload05</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>fileupload05-board</name>
-	<description>부트를 이용한 게시판 작성</description>
+	<description>ajax를 활용한 게시물 프로젝트</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -56,8 +56,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
-		<!-- jsp 사용을 위해서 -->
+		<!-- jsp ?ъ슜 -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
