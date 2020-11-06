@@ -15,30 +15,47 @@ import com.ssafy.fileupload05.repository.dto.Board;
 @Controller
 @RequestMapping("/board")
 public class BoardController {
-	@Autowired
-	BoardService service;
-
-	/** 목록 이동 */
+	
+    @Autowired
+    private BoardService service;
+    
+    /** 목록 이동 */
 	@GetMapping("/list")
-	public void List(Model model) {
+    public void list(Model model) {
 		model.addAttribute("list", service.list());
-	}
-
+    }
+	
 	/** 등록폼 이동 */
 	@GetMapping("/write")
-	public void write() {}
-
+    public void write() {}
+	
 	/** 상세 페이지 이동 */
 	@GetMapping("/detail")
 	public void detail(int no, Model model) {
-		Map<String, Object> result = service.detail(no);
-		model.addAttribute("result", result);
+		model.addAttribute("board", service.detail(no));
 	}
-
+	
 	@PostMapping("/write")
-	public String write(Board board) throws Exception {
-		service.write(board);
-		return "redirect:write";
-	}
-
+    public String write(Board board) throws Exception {
+		try {
+			service.write(board);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		return "redirect:list";
+    }
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,16 +17,18 @@
 			<th>글쓴이</th>
 		</tr>
 		<c:forEach var="board" items="${list}">
-			<tr>				
+			<tr>
 				<td>${board.no}</td>
-				<td>${board.title}</td>
+				<td><a href="/detail?no=${board.no}"><c:out value="${board.title}" /></a></td>
 				<td>${board.writer}</td>
 			</tr>
 		</c:forEach>
 		<c:if test="${empty list}">
-			<tr><td colsapn="3">게시물이 없습니다.</td></tr>
+			<tr>
+				<td colsapn="3">게시물이 없습니다.</td>
+			</tr>
 		</c:if>
 	</table>
-		<a href='write'>글쓰기</a>
+	<a href='write'>글쓰기</a>
 </body>
 </html>
