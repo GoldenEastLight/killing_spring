@@ -6,9 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan("com.ssafy.happyhouse.repository.mapper")
-public class HappyHouseAdminApplication {
+public class HappyhouseApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HappyHouseAdminApplication.class, args);
+		SpringApplication.run(HappyhouseApplication.class, args);
 	}
+
 }
