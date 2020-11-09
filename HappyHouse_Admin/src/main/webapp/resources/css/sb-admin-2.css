@@ -11221,3 +11221,53 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
+/* 10대~60대 글자 */
+.text-10s {
+  color: #4e73df !important;
+}
+
+a.text-10s:hover, a.text-primary:focus {
+  color: #224abe !important;
+}
+
+.text-20s {
+  color: #1cc88a !important;
+}
+
+a.text-20s:hover, a.text-success:focus {
+  color: #13855c !important;
+}
+
+.text-30s {
+  color: #36b9cc !important;
+}
+
+a.text-30s:hover, a.text-info:focus {
+  color: #258391 !important;
+}
+
+.text-40s {
+  color: #af7ac5 !important;
+}
+
+a.text-40s:hover, a.text-info:focus {
+  color: #9b59b6 !important;
+}
+
+.text-50s {
+  color: #f8c471 !important;
+}
+
+a.text-50s:hover, a.text-info:focus {
+  color: #f5b041 !important;
+}
+
+.text-60s {
+  color: #f1948a !important;
+}
+
+a.text-60s:hover, a.text-info:focus {
+  color: #ec7063 !important;
+}
+/* 여기까지 */

@@ -22,6 +22,59 @@
   <!-- Custom styles for this template-->
   <link href="${root}/resources/css/sb-admin-2.min.css" rel="stylesheet">
 
+  <style>
+    
+/* 10대~60대 글자 css 아래 sb-admin-2.css 제일 하단에 설정했는데 안먹는 이유가 뭘까 그래서 여기 또 설정함 */
+.text-10s {
+  color: #4e73df !important;
+}
+
+a.text-10s:hover, a.text-primary:focus {
+  color: #224abe !important;
+}
+
+.text-20s {
+  color: #1cc88a !important;
+}
+
+a.text-20s:hover, a.text-success:focus {
+  color: #13855c !important;
+}
+
+.text-30s {
+  color: #36b9cc !important;
+}
+
+a.text-30s:hover, a.text-info:focus {
+  color: #258391 !important;
+}
+
+.text-40s {
+  color: #af7ac5 !important;
+}
+
+a.text-40s:hover, a.text-info:focus {
+  color: #9b59b6 !important;
+}
+
+.text-50s {
+  color: #f8c471 !important;
+}
+
+a.text-50s:hover, a.text-info:focus {
+  color: #f5b041 !important;
+}
+
+.text-60s {
+  color: #f1948a !important;
+}
+
+a.text-60s:hover, a.text-info:focus {
+  color: #ec7063 !important;
+}
+/* 여기까지 */
+
+  </style>
 </head>
 
 <body id="page-top">
@@ -459,7 +512,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">연령대별 방문 수 통계</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -474,19 +527,29 @@
                   </div>
                 </div>
                 <!-- Card Body -->
+                <!-- 연령대별 방문자 수 통계 -->
                 <div class="card-body">
                   <div class="chart-pie pt-4 pb-2">
                     <canvas id="myPieChart"></canvas>
                   </div>
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> Direct
+                      <i class="fas fa-circle text-10s"></i> 10대
                     </span>
                     <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> Social
+                      <i class="fas fa-circle text-20s"></i> 20대
                     </span>
                     <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> Referral
+                      <i class="fas fa-circle text-30s"></i> 30대
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-40s"></i> 40대
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-50s"></i> 50대
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-60s"></i> 60대 이상
                     </span>
                   </div>
                 </div>
@@ -693,5 +756,4 @@
   <script src="${root}/resources/js/demo/chart-pie-demo.js"></script>
 
 </body>
-
 </html>
