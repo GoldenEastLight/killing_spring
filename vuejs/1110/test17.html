@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div>data : {{message}}</div>
+      <div>method kor : {{helloKor()}}</div>
+      <div>method eng : {{helloEng()}}</div>
+    </div>
+    <!--
+        vue 객체를 생성하고 객체의 관리 데이터로
+        회원의 정보를 관리한다.
+        회원 정보는 name, id, age 3가지로 구성되어 있다.
+
+        회원 정보를 수정할 수 있는 updateMember 기능을 가지고 있다.
+        회원의 이름, 아이디, 나이 중에서 나이를 수정할 수 있다.
+    -->
+    <div id="app2">
+      <h2>회원정보</h2>
+      <span>{{ name }}</span>
+      <span v-text="id"></span>
+      <span v-text="age"></span>
+      <!-- v-bind == : -->
+      <!-- v-on == @ -->
+      <input type="number" v-on:change="updateMember" />
+    </div>
+
+    <script>
+      new Vue({
+        el: '#app2',
+        data: {
+          name: '김동빈',
+          id: '훈남동빈',
+          age: 27,
+        },
+        methods: {
+          updateMember(age) {
+            this.age = age;
+          },
+        },
+      });
+
+      // 선언적 함수
+      function helloEng() {}
+      // 표현식 - 익명 함수
+      let fn1 = function () {};
+      let name = 'hong';
+      let fns = {
+        // name: name,
+        name,
+        helloEng: function () {},
+        helloKor() {},
+      };
+
+      new Vue({
+        el: '#app',
+        data: {
+          message: 'Hello 싸피',
+          name: '안효인',
+        },
+        methods: {
+          helloEng() {
+            return 'Hello ' + this.name;
+          },
+          helloKor() {
+            return '안녕 ' + this.name;
+          },
+        },
+        /*
+        methods: {
+          helloEng: function () {
+            return 'Hello ' + this.name;
+          },
+          helloKor: function () {
+            return '안녕 ' + this.name;
+          },
+        },
+        */
+      });
+    </script>
+  </body>
+</html>

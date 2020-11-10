@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h2>뷰 적용</h2>
+        <h3>{{msg}}</h3>
+        <!-- innerText -->
+        <h3 v-text="'text : ' + msg"></h3>
+        <!-- v-는 view에서 특정으로 뭐 해 하고 하는것 -->
+        <!-- innerHTML -->
+        <h3 v-html="'html : ' + msg"></h3>
+        <h3 v-html="`html : ${msg}`"></h3>
+
+        <div><input type="text" v-model="msg"></div>
+
+    </div>
+
+    <script>
+        let app = document.querySelector('#app');
+        /*
+        let vueData = {
+            msg: "vue"
+        };
+
+        data = 100;
+        */
+        new Vue({
+            el: '#app', // Element - Vue를 적용할 element (root 개념), css 선택자 + HTML 엘리먼트
+            // data: vueData
+            // el: 'app' // css 선택자 + HTML 엘리먼트 가능
+
+            // data 프로퍼티 : 함수는 컴포넌트 사용시 공유되는 문제를 해결하기 위해서 사용
+            data: {         // el 내부적 관리되는 property
+                msg: "vue"
+            },
+            data: function() {
+                return {
+                    msg: "vue"
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
