@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const member = {
+        id: "aaa",
+        name: "bbb",
+        age: 22,
+      };
+      /*
+      // es5까지 주로 사용..
+      let id = member.id;
+      let name = member.name;
+      let age = member.age;
+      */
+      let { id, name, age } = member;
+      console.log(id, name, age);
+    </script>
+  </body>
+</html>

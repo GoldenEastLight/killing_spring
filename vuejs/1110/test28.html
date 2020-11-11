@@ -10,20 +10,23 @@
     <div id="app">
       <h2>페이지 이동</h2>
 
-      <a href="test29.html" @click="sendMsg1">페이지 이동 막기1</a><br />
+      <a href="test29.html" v-on:click="sendMsg1">페이지 이동 막기1</a><br />
+      <!-- 함수에 아무것도 안주면 event객체를 받을 수 있다. -->
       <a href="test29.html" @click="sendMsg2">페이지 이동 막기2</a><br />
-      <a href="test29.html" @click.prevent="sendMsg1">페이지 이동 막기3</a><br />
+      <!-- .prevent는 해당 태그에 기본으로 있는 이벤트를 취소해준다. -->
+      <a href="test29.html" @click.prevent="sendMsg1">페이지 이동 막기3</a
+      ><br />
     </div>
     <script>
       new Vue({
-        el: '#app',
+        el: "#app",
         methods: {
           sendMsg1() {
-            alert('이동할까요?');
+            alert("이동할까요?");
           },
           sendMsg2(e) {
             e.preventDefault();
-            alert('이동막기');
+            alert("이동막기");
           },
         },
       });

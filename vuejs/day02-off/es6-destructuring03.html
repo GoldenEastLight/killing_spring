@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function showMember(member) {
+        console.log("아이디 : ", member.id);
+        console.log("이름 : ", member.name);
+        console.log("나이 : ", member.age);
+      }
+      function showMember2({ id, name, age }) {
+        console.log("아이디 : ", id);
+        console.log("이름 : ", name);
+        console.log("나이 : ", age);
+      }
+      // default parameter
+      function showMember3({ id, name, age, email = "이메일없음" }) {
+        console.log("아이디 : ", id);
+        console.log("이름 : ", name);
+        console.log("나이 : ", age);
+        console.log("이메일 : ", email);
+      }
+      let member = {
+        id: "aaa",
+        name: "bbb",
+        age: 22,
+      };
+      showMember(member);
+      showMember2(member);
+      showMember3(member);
+    </script>
+  </body>
+</html>

@@ -18,17 +18,23 @@
       <div>
         <p>
           SMS 수신
-          <input type="checkbox" id="smsYN" v-model="sms" true-value="Y" false-value="N" />
+          <input
+            type="checkbox"
+            id="smsYN"
+            v-model="sms"
+            true-value="Y"
+            false-value="N"
+          />
           <label for="smsYN">{{ sms }}</label>
         </p>
       </div>
     </div>
     <script>
       new Vue({
-        el: '#app',
+        el: "#app",
         data: {
           email: false,
-          sms: 'Y',
+          sms: "Y",
         },
       });
     </script>
