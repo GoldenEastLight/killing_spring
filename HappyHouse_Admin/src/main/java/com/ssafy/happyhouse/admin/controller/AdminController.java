@@ -14,15 +14,24 @@ import com.ssafy.happyhouse.repository.dto.Member;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-	
+
 	@Autowired
 	private AdminService adminService;
-	
+
 	@GetMapping("/main")
 	public void adminForm(Model model) {
 		try {
 			List<Member> members = adminService.select();
 			model.addAttribute("members", members);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@GetMapping("/tables")
+	public void adminTables(Model model) {
+		try {
+			model.addAttribute("houseInfoLikeList", adminService.selectHouseInfoLike());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
