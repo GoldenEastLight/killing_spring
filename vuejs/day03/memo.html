@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{hi}}</h2>
+      <h2 id="hi"></h2>
+      <!-- id가 "hi" 라는 h2 태그 -->
+      <h2 v-bind:id="hi"></h2>
+      <!-- #app Vue가 가지고 있는 hi 라는 변수값을 id로 가지고 있는 h2 태그 -->
+
+      <ssafy-area mymsg="hello1" yourmsg="hi1"></ssafy-area>
+      <!-- 하위에 던지는 mysmg, yourmsg 값을 준비 -->
+      <ssafy-area mymsg="hello2" yourmsg="hi2"></ssafy-area>
+      <ssafy-area mymsg="hello3" yourmsg="hi3"></ssafy-area>
+      <ssafy-area mymsg="hello4" v-bind:yourmsg="hiiii"></ssafy-area>
+    </div>
+    <template id="SsafyComp">
+      <!-- template id는 파스칼 네이밍 사용 권장 -->
+      <div>
+        <div>{{mymsg}}</div>
+        <div>{{yourmsg}}</div>
+      </div>
+    </template>
+    <script>
+      Vue.component('SsafyArea', {
+        props: ['mymsg', 'yourmsg'], // 하위에 던지는 props 값
+        // template: '#SsafyComp', // template가 외부에 존재한다면 이와 같이 활용 가능
+        template: `
+          <div>
+            <span>{{mymsg}}</span>
+            <span>{{yourmsg}}</span>
+          </div>
+        `,
+        data() {
+          return {
+            mymsg: 'hello',
+            yourmsg: 'hi',
+          };
+        },
+      });
+      new Vue({
+        el: '#app',
+        data: {
+          hi: 'hello',
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -14,8 +14,12 @@
     <div id="app2">
       <my-global></my-global>
       <my-global></my-global>
+      <your-com></your-com>
     </div>
     <script>
+      Vue.component('YourCom', {
+        template: '<h2>your com</h2>',
+      });
       Vue.component('MyGlobal', {
         template: '<h2>전역 컴포넌트임</h2>',
       });

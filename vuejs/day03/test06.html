@@ -8,11 +8,35 @@
   </head>
   <body>
     <div id="app">
-      <child-comp area="광주" v-bind:msg="msg[parseInt(Math.random() * 4)]"></child-comp>
-      <child-comp area="구미" v-bind:msg="msg[parseInt(Math.random() * 4)]"></child-comp>
-      <child-comp area="대전" v-bind:msg="msg[parseInt(Math.random() * 4)]"></child-comp>
-      <child-comp area="서울" v-bind:msg="msg[parseInt(Math.random() * 4)]"></child-comp>
+      <child-comp
+        area="광주"
+        v-bind:msg="msg[parseInt(Math.random() * 4)]"
+      ></child-comp>
+      <child-comp
+        area="구미"
+        v-bind:msg="msg[parseInt(Math.random() * 4)]"
+      ></child-comp>
+      <child-comp
+        area="대전"
+        v-bind:msg="msg[parseInt(Math.random() * 4)]"
+      ></child-comp>
+      <child-comp
+        area="서울"
+        v-bind:msg="msg[parseInt(Math.random() * 4)]"
+      ></child-comp>
+      <ssafy-area mymsg="hello" yourmsg="hi"></ssafy-area>
     </div>
+    <script>
+      Vue.component('SsafyArea', {
+        props: ['mymsg', 'yourmsg'],
+        template: `
+        <div>
+          <div>{{mymsg}}</div>
+          <div>{{yourmsg}}</div>
+        </div>
+        `,
+      });
+    </script>
     <template id="ChildComp">
       <div>
         <h2>SSAFY {{area}}지역 4기 {{msg}}</h2>
