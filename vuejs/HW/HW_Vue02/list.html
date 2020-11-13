@@ -40,10 +40,11 @@
           </tr>
           <tr v-for="(board, index) in items" :key="index + '_items'">
             <td>{{board.id}}</td>
-            <td><a :href="'read.html?no=' + board.no">{{board.name}}</a></td>
+            <!-- <td><a :href="'read.html?no=' + board.no">{{board.name}}</a></td> -->
+            <td>{{board.name}}</a></td>
             <td>{{board.dept}}</td>
-            <td>{{getFormatDate(board.job)}}</td>
-            <td>{{getFormatDate(board.salary)}}</td>
+            <td>{{board.job}}</td>
+            <td>{{parseInt(board.salary * 12)}}</td>
           </tr>
         </table>
       </div>
