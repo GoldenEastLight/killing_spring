@@ -1,8 +1,8 @@
-import List from "./List.js";
+import Create from "./Create.js";
 
 new Vue({
   el: "#app",
   components: {
-    List,
+    Create,
   },
 });

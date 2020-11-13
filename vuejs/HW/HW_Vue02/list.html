@@ -20,7 +20,7 @@
 
       <h3 class="text-center">사원목록</h2>
         <div class="text-center">
-          <input type="text" v-model="search"><button>검색</button>
+          <input type="text" v-model="search"><button @click="searchName()">검색</button>
         </div>
       <div v-if="items.length">
         <table class="table table-bordered table-condensed">
@@ -86,6 +86,29 @@
           movePage() {
             location.href = 'create.html';
           },
+          searchName() {
+            const boards = JSON.parse(localStorage.getItem("board"));
+            let newItems = {
+              items: [],
+            };
+            boards.items.forEach((board) => {
+              if (board.name.indexOf(this.search) !== -1) {
+                newItems.items.push({
+                  id: board.id,
+                  name: board.name,
+                  email: board.email,
+                  hiredate: board.hiredate,
+                  manager: board.manager,
+                  job: board.job,
+                  dept: board.dept,
+                  salary: board.salary,
+                  commission: board.commission,
+                });
+              }
+            });
+            console.dir(newItems);
+            this.items = newItems.items;
+          }, 
         },
       });
     </script>
