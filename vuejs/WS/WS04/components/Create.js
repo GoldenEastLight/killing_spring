@@ -22,27 +22,27 @@ export default {
     `,
   data: function () {
     return {
-      no: "",
-      regtime: "",
-      writer: "",
-      title: "",
-      content: "",
+      no: '',
+      regtime: '',
+      writer: '',
+      title: '',
+      content: '',
     };
   },
   methods: {
     checkHandler() {
       let err = true;
-      let msg = "";
+      let msg = '';
       !this.writer &&
-        ((msg = "작성자를 입력해주세요"),
+        ((msg = '작성자를 입력해주세요'),
         (err = false),
         this.$refs.writer.focus());
       err &&
         !this.title &&
-        ((msg = "제목 입력해주세요"), (err = false), this.$refs.title.focus());
+        ((msg = '제목 입력해주세요'), (err = false), this.$refs.title.focus());
       err &&
         !this.content &&
-        ((msg = "내용 입력해주세요"),
+        ((msg = '내용 입력해주세요'),
         (err = false),
         this.$refs.content.focus());
 
@@ -51,22 +51,22 @@ export default {
     },
     createHandler() {
       axios
-        .post("http://localhost:9999/vue/api/board", {
+        .post('http://localhost:9999/vue/api/board', {
           writer: this.writer,
           title: this.title,
           content: this.content,
         })
         .then(({ data }) => {
-          let msg = "등록 처리시 문제가 발생했습니다.";
-          if (data === "success") {
-            msg = "등록이 완료되었습니다.";
+          let msg = '등록 처리시 문제가 발생했습니다.';
+          if (data === 'success') {
+            msg = '등록이 완료되었습니다.';
           }
           alert(msg);
           this.moveList();
         });
     },
     moveList() {
-      this.$router.push("/list");
+      this.$router.push('/list');
     },
   },
 };

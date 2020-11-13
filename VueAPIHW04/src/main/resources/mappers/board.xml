@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.vue.dao.BoardDAO">
+
+	<!-- 사원 전체 조회 (List) -->
+	<select id="selectBoard" resultType="board">
+<!-- 		select e.id, e.name, d.name, e.title, e.salary -->
+<!-- 		  from s_emp e inner join s_dept d -->
+<!-- 		 where e.dept_id = d.dept_id; -->
+		select id, name, dept_id, title, salary
+		  from s_emp;
+	</select>
+	
+	<!-- 사원 등록 (Create) -->
+	<insert id="insertBoard" parameterType="board">
+		insert into s_emp(id, name, mailid, start_date, manager_id, title, dept_id, salary, commission_pct
+		) values (
+			#{id}, #{name}, #{mailid}, #{start_date}, #{manager_id}, #{title}, #{dept_id}, #{salary}, #{commission_pct}
+		)
+	</insert>
+	
+</mapper>

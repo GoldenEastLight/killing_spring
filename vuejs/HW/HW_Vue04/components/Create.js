@@ -20,9 +20,9 @@ export default {
             <input
               type="text"
               class="form-control"
-              id="email"
-              ref="email"
-              v-model="email"
+              id="mailid"
+              ref="mailid"
+              v-model="mailid"
             />
           </td>
         </tr>
@@ -32,10 +32,10 @@ export default {
             <input
               type="text"
               class="form-control"
-              id="hiredate"
-              ref="hiredate"
+              id="start_date"
+              ref="start_date"
               placeholder="연도-월-일"
-              v-model="hiredate"
+              v-model="start_date"
             />
           </td>
         </tr>
@@ -45,9 +45,9 @@ export default {
             <input
               type="text"
               class="form-control"
-              id="manager"
-              ref="manager"
-              v-model="manager"
+              id="manager_id"
+              ref="manager_id"
+              v-model="manager_id"
             />
           </td>
         </tr>
@@ -57,9 +57,9 @@ export default {
             <select
               type="select"
               class="form-control"
-              id="job"
-              v-model="job"
-              ref="job"
+              id="title"
+              v-model="title"
+              ref="title"
             >
               <option value=""></option>
               <option value="사장">사장</option>
@@ -79,9 +79,9 @@ export default {
             <input
               type="text"
               class="form-control"
-              id="dept"
-              ref="dept"
-              v-model="dept"
+              id="dept_id"
+              ref="dept_id"
+              v-model="dept_id"
             />
           </td>
         </tr>
@@ -103,9 +103,9 @@ export default {
             <input
               type="text"
               class="form-control"
-              id="commission"
-              ref="commission"
-              v-model="commission"
+              id="commission_pct"
+              ref="commission_pct"
+              v-model="commission_pct"
             />
           </td>
         </tr>
@@ -119,14 +119,14 @@ export default {
   // 폼 화면 입력값과 연관된 데이터 선언하기
   data: function () {
     return {
-      name: "",
-      email: "",
-      hiredate: "",
-      manager: "",
-      job: "",
-      dept: "",
-      salary: "",
-      commission: "",
+      name: '',
+      mailid: '',
+      start_date: '',
+      manager_id: '',
+      title: '',
+      dept_id: '',
+      salary: '',
+      commission_pct: '',
     };
   },
   methods: {
@@ -136,40 +136,44 @@ export default {
       // 작성자, 제목, 내용
       // 없을 경우 각 항목에 맞는 메세지를 출력
       let err = true;
-      let msg = "";
+      let msg = '';
       !this.name &&
-        ((msg = "이름을 입력해주세요"), (err = false), this.$refs.name.focus());
+        ((msg = '이름을 입력해주세요'), (err = false), this.$refs.name.focus());
       err &&
-        !this.email &&
-        ((msg = "이메일을 입력해주세요"),
+        !this.mailid &&
+        ((msg = '이메일을 입력해주세요'),
+        (err = false),
+        this.$refs.mailid.focus());
+      err &&
+        !this.start_date &&
+        ((msg = '고용일을 입력해주세요'),
+        (err = false),
+        this.$refs.start_date.focus());
+      err &&
+        !this.manager_id &&
+        ((msg = '관리자를 입력해주세요'),
+        (err = false),
+        this.$refs.manager_id.focus());
+      err &&
+        !this.title &&
+        ((msg = '직책을 입력해주세요'),
         (err = false),
         this.$refs.title.focus());
       err &&
-        !this.hiredate &&
-        ((msg = "고용일을 입력해주세요"),
+        !this.dept_id &&
+        ((msg = '부서를 입력해주세요'),
         (err = false),
-        this.$refs.hiredate.focus());
-      err &&
-        !this.manager &&
-        ((msg = "관리자를 입력해주세요"),
-        (err = false),
-        this.$refs.manager.focus());
-      err &&
-        !this.job &&
-        ((msg = "직책을 입력해주세요"), (err = false), this.$refs.job.focus());
-      err &&
-        !this.dept &&
-        ((msg = "부서를 입력해주세요"), (err = false), this.$refs.dept.focus());
+        this.$refs.dept_id.focus());
       err &&
         !this.salary &&
-        ((msg = "월급을 입력해주세요"),
+        ((msg = '월급을 입력해주세요'),
         (err = false),
         this.$refs.salary.focus());
       err &&
-        !this.commission &&
-        ((msg = "커미션을 입력해주세요"),
+        !this.commission_pct &&
+        ((msg = '커미션을 입력해주세요'),
         (err = false),
-        this.$refs.commission.focus());
+        this.$refs.commission_pct.focus());
 
       if (!err) alert(msg);
       // 만약, 내용이 다 입력되어 있다면 createHandler 호출
@@ -178,41 +182,43 @@ export default {
 
     createHandler() {
       // 로컬스토리지에 저장된 데이터 가져오기
-      const board = localStorage.getItem("board");
-      // 데이터 선언
-      let newBoard = {
-        sequence: 0,
-        items: [],
-      };
+      axios.get('http://localhost:9999/vue/api/board').then(({ data }) => {
+        const board = data;
+        // 데이터 선언
+        let newBoard = {
+          sequence: 0,
+          items: [],
+        };
 
-      // 기존 로컬스토리지에 저장된 내용이 있다면 newBoard 객체를 변경
-      if (board) {
-        newBoard = JSON.parse(board);
-      }
-
-      // 사원아이디 증가
-      newBoard.sequence += 1;
-      // 화면 입력된 데이터를 newBoard에 추가
-      newBoard.items.push({
-        id: newBoard.sequence,
-        name: this.name,
-        email: this.email,
-        hiredate: this.hiredate,
-        manager: this.manager,
-        job: this.job,
-        dept: this.dept,
-        salary: this.salary,
-        commission: this.commission,
+        // 사원아이디 증가
+        newBoard.sequence = board.length + 1;
+        // 저장
+        axios
+          .post('http://localhost:9999/vue/api/board', {
+            id: newBoard.sequence,
+            name: this.name,
+            mailid: this.mailid,
+            start_date: this.start_date,
+            manager_id: this.manager_id,
+            title: this.title,
+            dept_id: this.dept_id,
+            salary: this.salary,
+            commission_pct: this.commission_pct,
+          })
+          .then(({ data }) => {
+            let msg = '등록 처리시 문제가 발생했습니다.';
+            if (data === 'success') {
+              // 등록 성공 메세지 출력
+              msg = '등록이 완료되었습니다.';
+            }
+            alert(msg);
+            // 목록 페이지로 이동하기
+            this.moveList();
+          });
       });
-      // 로컬스트리지 저장
-      localStorage.setItem("board", JSON.stringify(newBoard));
-      // 등록 성공 메세지 출력
-      alert("등록이 완료되었습니다.");
-      // 목록 페이지로 이동하기
-      location.href = "./list.html";
     },
     moveList() {
-      location.href = "list.html";
+      this.$router.push('/list');
     },
   },
 };
