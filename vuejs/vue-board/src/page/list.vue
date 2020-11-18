@@ -44,13 +44,14 @@ export default {
   components: {
     ListRow,
   },
-  data: function () {
+  data: function() {
     return {
       search: '',
       items: [],
     };
   },
   created() {
+    /*
     http
       .get('/board')
       .then(({ data }) => {
@@ -59,8 +60,18 @@ export default {
       .catch(() => {
         alert('에러가 발생했습니다.');
       });
+      */
+    this.getBoard();
   },
   methods: {
+    async getBoard() {
+      try {
+        let { data } = await http.get('/board');
+        this.items = data;
+      } catch (error) {
+        alert('에러가 발생했습니다.');
+      }
+    },
     movePage() {
       this.$router.push('/create');
     },
