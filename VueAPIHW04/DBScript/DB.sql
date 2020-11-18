@@ -1,4 +1,6 @@
-use mysql;
+create database ssafyws;
+
+use ssafyws;
 DROP TABLE s_emp;
 DROP TABLE s_dept;
 
